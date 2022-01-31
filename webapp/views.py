@@ -13,3 +13,6 @@ def Order(request):
 
 def single_page(request):
 	return render(request, "single.html")
+
+# def get_invoice(request):
+# 	return render(request, "invoice_template.html",context={'invoice': invoice_data ,'items':items})
