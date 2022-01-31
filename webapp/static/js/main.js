@@ -43,7 +43,7 @@ async function logout() {
     },
     })
   window.localStorage.clear('token');
-  window.location = "http://127.0.0.1:8000"
+  window.location = "https://pratikmahobiyaecomapp.herokuapp.com"
 }
 
 async function products() {
