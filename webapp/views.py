@@ -1,3 +1,4 @@
+from cart.models import OrderDetail
 from store.models import Product
 from django.shortcuts import render
 
@@ -14,5 +15,7 @@ def Order(request):
 def single_page(request):
 	return render(request, "single.html")
 
-# def get_invoice(request):
-# 	return render(request, "invoice_template.html",context={'invoice': invoice_data ,'items':items})
+def get_invoice(request):
+	invoice_data = Order.objects.get(bill_no = request.GET.get('bill_no'))
+	items = OrderDetail.objects.get(bill_no = request.GET.get('bill_no'))
+	return render(request, "invoice_template.html", context={'invoice': invoice_data ,'items':items})

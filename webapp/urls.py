@@ -9,7 +9,7 @@ urlpatterns = [
     path(r'checkout/', views.Checkout, name = 'CheckOut'),
     path(r'order/', views.Order, name = 'Orders'),
     path(r'single/', views.single_page, name = 'SingleProduct'),
-    # path(r'order/', views.OrderView.as_view(), name = 'Order'),
+    path(r'invoice/', views.get_invoice, name = 'Invoice'),
 ]
 
 if settings.DEBUG:

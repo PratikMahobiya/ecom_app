@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bhajito{{ invoice.name }}{{ invoice.bill_no }}</title>
+    <title>Bhajito{{ invoice.bill_no }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
             <!-- <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a> -->
             <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
             </span>
-            <strong><u>Bhajito</u></strong>
+            <strong><u><a href="/">Bhajito</a></u></strong>
          </div>
          <!-- end invoice-company -->
          <!-- begin invoice-header -->
@@ -36,7 +36,7 @@
             <div class="invoice-to">
                <!-- <small>to</small> -->
                <address class="m-t-5 m-b-5">
-                  <strong class="text-inverse"><b>{{ invoice.name }}</b></strong><br>
+                  <strong class="text-inverse"><b>{{ invoice.first_name }} {{ invoice.last_name }}</b></strong><br>
                   {{ invoice.address }}<br>
                   Phone: {{ invoice.mobile }}
                </address>
@@ -44,7 +44,7 @@
             <div class="invoice-date">
                <small>GST:- XXXXXXXXXXXX</small><br>
                <small><u><b>INVOICE</b></u></small>
-               <div class="date text-inverse m-t-5">{{ invoice.created_at }}</div>
+               <div class="date text-inverse m-t-5">{{ invoice.order_date }}</div>
                <div class="invoice-detail">
                   Invoice No:- <b>{{ invoice.bill_no }}</b>
                </div>
@@ -68,12 +68,12 @@
                      {% for item in items %}
                      <tr>
                         <td>
-                           <span class="text-inverse"><b>{{ item.0 }}</b></span><br>
-                           <small>Unit. <b>{{ item.1 }}</b> MRP.(exclusive of GST) <b>{{ item.3 }} ₹</b></small>
+                           <span class="text-inverse"><b>{{ item.item_name }}</b></span><br>
+                           <small>MRP.(exclusive of GST) <b>{{ item.mrp }} ₹</b></small>
                         </td>
-                        <td class="text-center">{{ item.4 }}</td>
-                        <td class="text-center">{{ item.2 }}</td>
-                        <td class="text-right"><b>{{ item.5 }}</b></td>
+                        <td class="text-center">{{ item.mrp }}</td>
+                        <td class="text-center">{{ item.quantity }}</td>
+                        <td class="text-right"><b>{{ item.total }}</b></td>
                      </tr>
                      {% endfor %}
                   </tbody>
@@ -86,17 +86,17 @@
                   <div class="invoice-price-row">
                      <div class="sub-price">
                         <small>SUBTOTAL</small>
-                        <span class="text-inverse">{{ invoice.sub_total }} ₹</span>
+                        <span class="text-inverse">{{ invoice.amount }} ₹</span>
                      </div>
-                     {% if invoice.gst == True %}
+                     <!-- {% if invoice.gst == True %} -->
                      <div class="sub-price">
                         <i class="fa fa-plus text-muted"></i>
                      </div>
                      <div class="sub-price">
-                        <small>GST ({{ invoice.gst_percent }}%)</small>
-                        <span class="text-inverse" id="gst_price">{{ invoice.gst_price }} ₹</span>
+                        <small>GST (0%)</small>
+                        <span class="text-inverse" id="gst_price">0 ₹</span>
                      </div>
-                     {% endif %}
+                     <!-- {% endif %} -->
                   </div>
                </div>
                <div class="invoice-price-right">

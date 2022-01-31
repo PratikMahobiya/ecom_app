@@ -298,7 +298,7 @@ async function orders() {
 
   //returning the selected fields from the object getting from the response
   for (var i = 0; i < data.data.length; i++) {
-    cart_item_str += '<tr class="rem'+ (i+1) +'"><td class="invert">'+ data.data[i].bill_no +'<td class="invert">'+ data.data[i].first_name + data.data[i].last_name + '</td><td class="invert">'+ data.data[i].mobile + '</td><td class="invert">'+ data.data[i].no_of_items + '</td><td class="invert">'+ data.data[i].amount + '</td><td class="invert">'+ data.data[i].address + '</td></tr>'
+    cart_item_str += '<tr class="rem'+ (i+1) +'"><td class="invert"><a href="https://pratikmahobiyaecomapp.herokuapp.com/invoice/?bill_no='+ data.data[i].bill_no +'">'+ data.data[i].bill_no +'</a><td class="invert">'+ data.data[i].first_name + data.data[i].last_name + '</td><td class="invert">'+ data.data[i].mobile + '</td><td class="invert">'+ data.data[i].no_of_items + '</td><td class="invert">'+ data.data[i].amount + '</td><td class="invert">'+ data.data[i].address + '</td></tr>'
     // <td class="invert"><div class="rem"><div class="close1"  onclick="delete_item('+ data.data[i].product_id +')"> </div></div></td></tr>'
   }
   cart_items.innerHTML = cart_item_str;
