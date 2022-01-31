@@ -1,4 +1,4 @@
-from cart.models import OrderDetail
+from cart.models import OrderDetail, Order
 from store.models import Product
 from django.shortcuts import render
 
