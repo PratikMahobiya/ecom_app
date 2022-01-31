@@ -17,5 +17,5 @@ def single_page(request):
 
 def get_invoice(request):
 	invoice_data = Order.objects.get(bill_no = request.GET.get('bill_no'))
-	items = OrderDetail.objects.get(bill_no = request.GET.get('bill_no'))
+	items = OrderDetail.objects.filter(bill_no = request.GET.get('bill_no'))
 	return render(request, "invoice_template.html", context={'invoice': invoice_data ,'items':items})
