@@ -1,6 +1,45 @@
 # ecom_app
 GENERAL PURPOSE ECOMM WEB_APP, BUILD USING DJANGO, DJANGO REST FRAMEWORK, JAVASCRIPT, etc.
 
+API FOR EVERYTHNG:- 
+<<<<<<< HEAD
+
+LOGIN : http://127.0.0.1:8000/api/auth/login/ :-
+
+LogOut : http://127.0.0.1:8000/api/auth/logout/ :-
+
+USER REGISTRATION : http://127.0.0.1:8000/api/auth/register/ :-
+
+CHECK USER IS AUTHENTICATED OR NOT : http://127.0.0.1:8000/api/auth/auth_user/ :-
+
+API FOR ALL PRODUCT : http://127.0.0.1:8000/api/store/product/ :-
+
+API FOR ALL CATEGORY : http://127.0.0.1:8000/api/store/category/ :-
+
+FOR CATEGORY WISE FILTER : http://127.0.0.1:8000/api/store/category_filter/?category=A 1 :-
+
+FOR PRODUCT SEARCH BY NAME : http://127.0.0.1:8000/api/store/search/?search=rty :-
+
+For SINGLE PRODUCT : http://127.0.0.1:8000/api/store/single_product/?id=2 :-
+
+CART DETAIL/USER: http://127.0.0.1:8000/api/cart/usercart/ :-
+
+API FOR PLACING ORDERS : http://127.0.0.1:8000/api/cart/order/ :-
+
+FOR ALL ORDER/USER : http://127.0.0.1:8000/api/cart/order/ etc.:-
+
+-- TOKEN BASED AUTHENTICATION SYSTEM --
+
+
+(FOR LOCAL SERVER MAIN BRANCH:-) http://127.0.0.1:8000/ HOME PAGE.:-
+
+(FOR HEROKU heroku_deployment BRANCH:-) http://127.0.0.1:8000 HOME PAGE.:-
+
+ADDING PRODUCTS USING DJANGO ADMIN. http://127.0.0.1:8000/admin/ :- U: admin@gmail.com, P: admin:-
+
+LOGIN IS MUST.:-
+
+
 ![image](https://user-images.githubusercontent.com/49225984/151728735-8112ad2b-60b8-49ab-886c-bcc47968f1fc.png)
 
 ![image](https://user-images.githubusercontent.com/49225984/151728758-d9768e0d-8520-437d-a030-3a0d31f97933.png)
@@ -15,25 +54,3 @@ GENERAL PURPOSE ECOMM WEB_APP, BUILD USING DJANGO, DJANGO REST FRAMEWORK, JAVASC
 
 ![image](https://user-images.githubusercontent.com/49225984/151729153-2472c0d2-690a-4e54-9e3e-475c58f2dcba.png)
 
-
-
-API FOR EVERYTHNG:- 
-LOGIN : https://pratikmahobiyaecomapp.herokuapp.com//api/auth/login/ :-
-LogOut : https://pratikmahobiyaecomapp.herokuapp.com//api/auth/logout/ :-
-USER REGISTRATION : https://pratikmahobiyaecomapp.herokuapp.com//api/auth/register/ :-
-CHECK USER IS AUTHENTICATED OR NOT : https://pratikmahobiyaecomapp.herokuapp.com//api/auth/auth_user/ :-
-API FOR ALL PRODUCT : https://pratikmahobiyaecomapp.herokuapp.com//api/store/product/ :-
-API FOR ALL CATEGORY : https://pratikmahobiyaecomapp.herokuapp.com//api/store/category/ :-
-FOR CATEGORY WISE FILTER : https://pratikmahobiyaecomapp.herokuapp.com//api/store/category_filter/?category=A 1 :-
-FOR PRODUCT SEARCH BY NAME : https://pratikmahobiyaecomapp.herokuapp.com//api/store/search/?search=rty :-
-For SINGLE PRODUCT : https://pratikmahobiyaecomapp.herokuapp.com//api/store/single_product/?id=2 :-
-CART DETAIL/USER: https://pratikmahobiyaecomapp.herokuapp.com//api/cart/usercart/ :-
-API FOR PLACING ORDERS : https://pratikmahobiyaecomapp.herokuapp.com//api/cart/order/ :-
-FOR ALL ORDER/USER : https://pratikmahobiyaecomapp.herokuapp.com//api/cart/order/ etc.:-
-
--- TOKEN BASED AUTHENTICATION SYSTEM --
-
-(FOR LOCAL SERVER MAIN BRANCH:-) https://pratikmahobiyaecomapp.herokuapp.com// HOME PAGE.:-
-(FOR HEROKU heroku_deployment BRANCH:-) https://pratikmahobiyaecomapp.herokuapp.com/ HOME PAGE.:-
-ADDING PRODUCTS USING DJANGO ADMIN. https://pratikmahobiyaecomapp.herokuapp.com//admin/ :- U: admin@gmail.com, P: admin:-
-LOGIN IS MUST.:-
