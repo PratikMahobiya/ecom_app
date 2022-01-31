@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="fa fa-book" aria-hidden="true"></span>My Orders</a>
 					</li>
 					<li>
-						<a href="{% url 'CheckOut' %}"">
+						<a href="{% url 'CheckOut' %}">
 							<span class="fa fa-truck" aria-hidden="true"></span>Check Out</a>
 					</li>
 					<li>
@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- cart details -->
 				<div class="top_nav_right">
 					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-						<form action="checkout/" method="post" class="last">
+						<form action="{% url 'CheckOut' %}" method="post" class="last">
 							<input type="hidden" name="cmd" value="_cart">
 							<input type="hidden" name="display" value="1">
 							<button class="w3view-cart" type="submit" name="submit" value="">
