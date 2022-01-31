@@ -9,7 +9,7 @@ def Index(request):
 def Checkout(request):
 	return render(request, "checkout.html")
 
-def Order(request):
+def Orders(request):
 	return render(request, "order.html")
 
 def single_page(request):

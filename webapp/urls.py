@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path(r'', views.Index, name = 'Index'),
     path(r'checkout/', views.Checkout, name = 'CheckOut'),
-    path(r'order/', views.Order, name = 'Orders'),
+    path(r'order/', views.Orders, name = 'Orders'),
     path(r'single/', views.single_page, name = 'SingleProduct'),
     path(r'invoice/', views.get_invoice, name = 'Invoice'),
 ]
