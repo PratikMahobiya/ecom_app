@@ -367,7 +367,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				alert("Add Item To Your Cart.");
 			}
 			else{
-				let response = await fetch('http://127.0.0.1:8000/api/cart/order/', {
+				let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/order/', {
 					method: 'POST',
 					headers: {
 						'Authorization': 'token ' + window.localStorage.getItem('token'),
@@ -378,7 +378,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				let data = await response.json();
 				console.log(data)
 				if (data.status == 200){
-					window.location = "http://127.0.0.1:8000/order/"
+					window.location = "https://pratikmahobiyaecomapp.herokuapp.com/order/"
 				}
 				else{
 					var model_elem = document.getElementById("place_order_id")
