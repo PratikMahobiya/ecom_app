@@ -55,7 +55,7 @@ class Auth_User(APIView):
   def post(self, request):
     token = request.data['token']
     if token is None:
-      return JsonResponse({'status':200, 'success': False,'message':'Please SignIn.'})
+      return JsonResponse({'status':200, 'success': False,'message':'Login In.'})
     elif len(Token.objects.filter(key=token)) == 0:
       return JsonResponse({'status':200, 'success': False, 'message':'Session Expired.'})
     else:
