@@ -312,6 +312,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			else{
 				var message_elem = document.getElementById('message');
 				message_elem.innerText = data.message;
+				setTimeout(function () {
+										message_elem.innerText = 'Login In.';
+										}.bind(this), 3000);
 			}		
 		};
 	</script>
@@ -331,8 +334,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 			else{
 				var message_elem = document.getElementById('signup_message');
-				message_elem.innerText = data.errors;
-			}		
+				message_elem.innerText = "Something went wrong.'Try Again'";
+				setTimeout(function () {
+										message_elem.innerText = 'Sign Up';
+										}.bind(this), 3000);
+			}
 		};
 	</script>
 	<!-- //popup modal (for signin & signup)-->
