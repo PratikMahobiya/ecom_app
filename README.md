@@ -34,6 +34,6 @@ etc.
 
 -- TOKEN BASED AUTHENTICATION SYSTEM --
 
-http://127.0.0.1:8000/ HOME PAGE. (It will be live soon on Heroku.),
+http://127.0.0.1:8000/ HOME PAGE. (It will be live soon on Heroku or pythonanywhere.com.),
 LOGIN IS MUST.
 ADDING PRODUCTS USING DJANGO ADMIN. http://127.0.0.1:8000/admin/ :- U: admin@gmail.com, P: admin,
