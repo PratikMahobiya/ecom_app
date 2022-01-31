@@ -17,19 +17,39 @@ GENERAL PURPOSE ECOMM WEB_APP, BUILD USING DJANGO, DJANGO REST FRAMEWORK, JAVASC
 
 
 
-API FOR EVERYTHNG (CURRENTLY WORKING IN LOCALSERVER):-
-> LOGIN,
-> LogOut,
-> USER REGISTRATION,
-> API FOR ALL PRODUCT,
-> API FOR ALL CATEGORY,
-> FOR CATEGORY WISE FILTER,
-> FOR PRODUCT SEARCH BY NAME,
-> CART DETAIL/USER,
-> API FOR PLACING ORDERS,
-> FOR ALL ORDER/USER,
-> TOKEN BASED AUTHENTICATION SYSTEM,
+API FOR EVERYTHNG:- 
 
-> http://127.0.0.1:8000/ HOME PAGE. (It will be live soon on Heroku.),
-> LOGIN IS MUST.,
-> ADDING PRODUCTS USING DJANGO ADMIN. U: admin@gmail.com, P: admin,
+LOGIN : http://127.0.0.1:8000/api/auth/login/ :-
+
+LogOut : http://127.0.0.1:8000/api/auth/logout/ :-
+
+USER REGISTRATION : http://127.0.0.1:8000/api/auth/register/ :-
+
+CHECK USER IS AUTHENTICATED OR NOT : http://127.0.0.1:8000/api/auth/auth_user/ :-
+
+API FOR ALL PRODUCT : http://127.0.0.1:8000/api/store/product/ :-
+
+API FOR ALL CATEGORY : http://127.0.0.1:8000/api/store/category/ :-
+
+FOR CATEGORY WISE FILTER : http://127.0.0.1:8000/api/store/category_filter/?category=A 1 :-
+
+FOR PRODUCT SEARCH BY NAME : http://127.0.0.1:8000/api/store/search/?search=rty :-
+
+For SINGLE PRODUCT : http://127.0.0.1:8000/api/store/single_product/?id=2 :-
+
+CART DETAIL/USER: http://127.0.0.1:8000/api/cart/usercart/ :-
+
+API FOR PLACING ORDERS : http://127.0.0.1:8000/api/cart/order/ :-
+
+FOR ALL ORDER/USER : http://127.0.0.1:8000/api/cart/order/ etc.:-
+
+-- TOKEN BASED AUTHENTICATION SYSTEM --
+
+
+(FOR LOCAL SERVER MAIN BRANCH:-) http://127.0.0.1:8000/ HOME PAGE.:-
+
+(FOR HEROKU heroku_deployment BRANCH:-) http://127.0.0.1:8000 HOME PAGE.:-
+
+ADDING PRODUCTS USING DJANGO ADMIN. http://127.0.0.1:8000/admin/ :- U: admin@gmail.com, P: admin:-
+
+LOGIN IS MUST.:-
