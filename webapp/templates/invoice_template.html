@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bhajito{{ invoice.bill_no }}</title>
+    <title>Bhajito | {{ invoice.bill_no }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
             <!-- <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a> -->
             <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
             </span>
-            <strong><u><a href="/">Bhajito</a></u></strong>
+            <strong><u><a href="/">Bhajito Pvt Ltd.</a></u></strong>
          </div>
          <!-- end invoice-company -->
          <!-- begin invoice-header -->
@@ -88,7 +88,6 @@
                         <small>SUBTOTAL</small>
                         <span class="text-inverse">{{ invoice.amount }} ₹</span>
                      </div>
-                     <!-- {% if invoice.gst == True %} -->
                      <div class="sub-price">
                         <i class="fa fa-plus text-muted"></i>
                      </div>
@@ -96,7 +95,6 @@
                         <small>GST (0%)</small>
                         <span class="text-inverse" id="gst_price">0 ₹</span>
                      </div>
-                     <!-- {% endif %} -->
                   </div>
                </div>
                <div class="invoice-price-right">
@@ -109,7 +107,7 @@
          <!-- begin invoice-note -->
          <div class="invoice-note">
             THANK YOU FOR YOUR BUSINESS<br>
-            * If you have any questions concerning this invoice, contact  [ Sumit Kumar, <a href="tel:+91 7000681073">+91 7000681073</a>, <a href="mailto:pratikmahobiya20@gmail.com" target="_blank">pratikmahobiya20@gmail.com</a>]
+            * If you have any questions concerning this invoice, contact  [ Pratik Mahobiya, <a href="tel:+91 7000681073">+91 7000681073</a>, <a href="mailto:pratikmahobiya20@gmail.com" target="_blank">pratikmahobiya20@gmail.com</a>]
          </div>
          <!-- end invoice-note -->
          <!-- begin invoice-footer -->
@@ -120,8 +118,8 @@
                <small>Mobile No:- <a href="tel:+91 7000681073">+91 7000681073</a></small>
             </p>
             <p class="text-center">
-               <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> <a href="http://www.naturelitefood.com/" target="_blank">www.naturelitefood.com</a></span>
-               <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i><a href="tel:+91 7999399856">+91 7999399856</a></span>
+               <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> <a href="http://pratikmahobiya.pythonanywhere.com/" target="_blank">www.pratikmahobiya.com</a></span>
+               <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i><a href="tel:+91 7000681073">+91 7000681073</a></span>
                <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> <a href="mailto:pratikmahobiya20@gmail.com" target="_blank"> pratikmahobiya20@gmail.com</a></span><br>
             </p>
          </div>
