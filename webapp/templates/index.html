@@ -154,11 +154,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span class="fa fa-envelope-o" aria-hidden="true"></span>
 					</div>
 					<div class="modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign Up</h3>
+						<h3 class="agileinfo_sign" id="signup_message">Sign Up</h3>
 						<p>
 							Come join the Bhagito!! Let's set up your Account.
 						</p>
-						<form method="post">
+						<form  action="#" method="post" id="sign_up_form">
 							<div class="styled-input agile-styled-input-top">
 								<input type="text" placeholder="First Name" name="first_name" required="">
 							</div>
@@ -312,6 +312,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			else{
 				var message_elem = document.getElementById('message');
 				message_elem.innerText = data.message;
+			}		
+		};
+	</script>
+	<script>
+		sign_up_form.onsubmit = async (e) => {
+			e.preventDefault();
+	
+			let response = await fetch('api/auth/register/', {
+				method: 'POST',
+				body: new FormData(sign_up_form)
+			});
+	
+			let data = await response.json();
+			if (data.status == 200){
+				window.localStorage.setItem('token',data.token);
+				window.location.reload();
+			}
+			else{
+				var message_elem = document.getElementById('signup_message');
+				message_elem.innerText = data.errors;
 			}		
 		};
 	</script>
