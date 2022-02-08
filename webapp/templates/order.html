@@ -327,6 +327,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 			else{
 				let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/order/', {
+					mode: 'cors',
 					method: 'POST',
 					headers: {
 						'Authorization': 'token ' + window.localStorage.getItem('token'),

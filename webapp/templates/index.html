@@ -300,6 +300,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			e.preventDefault();
 	
 			let response = await fetch('api/auth/login/', {
+				mode: 'cors',
 				method: 'POST',
 				body: new FormData(login_form)
 			});
@@ -323,6 +324,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			e.preventDefault();
 	
 			let response = await fetch('api/auth/register/', {
+				mode: 'cors',
 				method: 'POST',
 				body: new FormData(sign_up_form)
 			});
