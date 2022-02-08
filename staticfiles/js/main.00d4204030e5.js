@@ -1,5 +1,5 @@
 async function Check_authenticated_user() {
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/auth/auth_user/', {
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/auth/auth_user/', {
     credentials: 'include',
     method: 'POST',
     headers: {
@@ -35,7 +35,7 @@ async function Check_authenticated_user() {
 }
 
 async function logout() {
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/auth/logout/', {
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/auth/logout/', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -43,11 +43,11 @@ async function logout() {
     },
     })
   window.localStorage.clear('token');
-  window.location = "http://pratikmahobiyaecomapp.herokuapp.com/"
+  window.location = "https://pratikmahobiyaecomapp.herokuapp.com/"
 }
 
 async function products() {
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/store/product/')
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/product/')
   let data = await response.json();
   var product_element = document.getElementById('id-product-sec1');
   var product_str = ''
@@ -55,13 +55,13 @@ async function products() {
   //returning the selected fields from the object getting from the response
 
   for (var i = 0; i < data.results.length; i++) {
-    product_str += '<div class="col-md-4 product-men"><div class="men-pro-item simpleCart_shelfItem"><div class="men-thumb-item"><img src='+ data.results[i].img + ' alt="" width="160" height="150"><div class="men-cart-pro"><div class="inner-men-cart-pro"><a href="http://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'" class="link-product-add-cart">Quick View</a></div></div></div><div class="item-info-product "><h4><a href="http://pratikmahobiyaecomapp.herokuapp.com/single/?id='+ data.results[i].id +'">' + data.results[i].product_title + '<a></h4><div class="info-product-price"><span class="item_price">'+ data.results[i].price +' ₹</span></div><div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out"><form action="#" method="post"><fieldset><input type="button" name="submit" value="Add to Cart" id="'+ data.results[i].id +'_cart" onclick="add_to_cart('+ data.results[i].id +')" class="button" /></input></fieldset></form></div></div></div></div>'
+    product_str += '<div class="col-md-4 product-men"><div class="men-pro-item simpleCart_shelfItem"><div class="men-thumb-item"><img src='+ data.results[i].img + ' alt="" width="160" height="150"><div class="men-cart-pro"><div class="inner-men-cart-pro"><a href="https://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'" class="link-product-add-cart">Quick View</a></div></div></div><div class="item-info-product "><h4><a href="https://pratikmahobiyaecomapp.herokuapp.com/single/?id='+ data.results[i].id +'">' + data.results[i].product_title + '<a></h4><div class="info-product-price"><span class="item_price">'+ data.results[i].price +' ₹</span></div><div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out"><form action="#" method="post"><fieldset><input type="button" name="submit" value="Add to Cart" id="'+ data.results[i].id +'_cart" onclick="add_to_cart('+ data.results[i].id +')" class="button" /></input></fieldset></form></div></div></div></div>'
   }
   product_element.innerHTML = product_str + '<div class="clearfix"></div>';
 }
 
 async function categorys(){
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/store/category/')
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/category/')
   let data = await response.json();
   var select_element = document.getElementById('agileinfo-nav_search')
   var select_category_str = '<option value="" selected >All Categories</option>'
@@ -76,7 +76,7 @@ async function categorys(){
 
 async function add_to_cart(product_id) {
   var model_elem = document.getElementById(product_id+'_cart');
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/', {
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ async function add_to_cart(product_id) {
 
 async function categoryfilter() {
   var category = document.getElementById('agileinfo-nav_search').value;
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/store/category_filter/?category='+ category);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/category_filter/?category='+ category);
   let data = await response.json();
   var product_element = document.getElementById('id-product-sec1');
   var product_str = ''
@@ -105,14 +105,14 @@ async function categoryfilter() {
   //returning the selected fields from the object getting from the response
 
   for (var i = 0; i < data.results.length; i++) {
-    product_str += '<div class="col-md-4 product-men"><div class="men-pro-item simpleCart_shelfItem"><div class="men-thumb-item"><img src='+ data.results[i].img + ' alt="" width="160" height="150"><div class="men-cart-pro"><div class="inner-men-cart-pro"><a href="http://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'" class="link-product-add-cart">Quick View</a></div></div></div><div class="item-info-product "><h4><a href="http://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'">' + data.results[i].product_title + '<a></h4><div class="info-product-price"><span class="item_price">'+ data.results[i].price +' ₹</span></div><div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out"><form action="#" method="post"><fieldset><input type="button" name="submit" value="Add to Cart" id="'+ data.results[i].id +'_cart" onclick="add_to_cart('+ data.results[i].id +')" class="button" /></input></fieldset></form></div></div></div></div>'
+    product_str += '<div class="col-md-4 product-men"><div class="men-pro-item simpleCart_shelfItem"><div class="men-thumb-item"><img src='+ data.results[i].img + ' alt="" width="160" height="150"><div class="men-cart-pro"><div class="inner-men-cart-pro"><a href="https://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'" class="link-product-add-cart">Quick View</a></div></div></div><div class="item-info-product "><h4><a href="https://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'">' + data.results[i].product_title + '<a></h4><div class="info-product-price"><span class="item_price">'+ data.results[i].price +' ₹</span></div><div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out"><form action="#" method="post"><fieldset><input type="button" name="submit" value="Add to Cart" id="'+ data.results[i].id +'_cart" onclick="add_to_cart('+ data.results[i].id +')" class="button" /></input></fieldset></form></div></div></div></div>'
   }
   product_element.innerHTML = product_str + '<div class="clearfix"></div>';
 }
 
 async function search_product() {
   var search_product = document.getElementById('search_product_name').value;
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/store/search/?search='+ search_product);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/search/?search='+ search_product);
   let data = await response.json();
   var product_element = document.getElementById('id-product-sec1');
   var product_str = ''
@@ -120,13 +120,13 @@ async function search_product() {
   //returning the selected fields from the object getting from the response
 
   for (var i = 0; i < data.results.length; i++) {
-    product_str += '<div class="col-md-4 product-men"><div class="men-pro-item simpleCart_shelfItem"><div class="men-thumb-item"><img src='+ data.results[i].img + ' alt="" width="160" height="150"><div class="men-cart-pro"><div class="inner-men-cart-pro"><a href="http://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'" class="link-product-add-cart">Quick View</a></div></div></div><div class="item-info-product "><h4><a href="http://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'">' + data.results[i].product_title + '<a></h4><div class="info-product-price"><span class="item_price">'+ data.results[i].price +' ₹</span></div><div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out"><form action="#" method="post"><fieldset><input type="button" name="submit" value="Add to Cart" id="'+ data.results[i].id +'_cart" onclick="add_to_cart('+ data.results[i].id +')" class="button" /></input></fieldset></form></div></div></div></div>'
+    product_str += '<div class="col-md-4 product-men"><div class="men-pro-item simpleCart_shelfItem"><div class="men-thumb-item"><img src='+ data.results[i].img + ' alt="" width="160" height="150"><div class="men-cart-pro"><div class="inner-men-cart-pro"><a href="https://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'" class="link-product-add-cart">Quick View</a></div></div></div><div class="item-info-product "><h4><a href="https://pratikmahobiyaecomapp.herokuapp.com/single/?id='+data.results[i].id+'">' + data.results[i].product_title + '<a></h4><div class="info-product-price"><span class="item_price">'+ data.results[i].price +' ₹</span></div><div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out"><form action="#" method="post"><fieldset><input type="button" name="submit" value="Add to Cart" id="'+ data.results[i].id +'_cart" onclick="add_to_cart('+ data.results[i].id +')" class="button" /></input></fieldset></form></div></div></div></div>'
   }
   product_element.innerHTML = product_str + '<div class="clearfix"></div>';
 }
 
 async function quick_view(product_id) {
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id);
   let data = await response.json();
   var single_product_page = document.getElementById('single_product');
   var single_product_str = '';
@@ -137,13 +137,13 @@ async function quick_view(product_id) {
 }
 
 async function single_product(product_id) {
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id);
   let data = await response.json();
   return data;
 }
 
 async function cart_items() {
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ async function cart_items() {
 }
 
 async function subtract_item(product_id){
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -212,7 +212,7 @@ async function subtract_item(product_id){
 }
 
 async function add_item(product_id){
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -247,7 +247,7 @@ async function add_item(product_id){
   cart_items.innerHTML = cart_item_str;
 }
 async function delete_item(product_id){
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -283,7 +283,7 @@ async function delete_item(product_id){
 }
 
 async function orders() {
-  let response = await fetch('http://pratikmahobiyaecomapp.herokuapp.com/api/cart/order/',{
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/order/',{
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

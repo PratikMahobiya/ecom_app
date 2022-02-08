@@ -79,7 +79,7 @@ MIDDLEWARE = [
 # Allow Access to fixed domain Whitelisted
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-  ' http://pratikmahobiyaecomapp.herokuapp.com','http://127.0.0.1:8000'#,'https://etsexperts.com'
+  ' https://pratikmahobiyaecomapp.herokuapp.com','http://127.0.0.1:8000'#,'https://etsexperts.com'
 )
 
 ROOT_URLCONF = 'ecom_app.urls'
