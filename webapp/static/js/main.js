@@ -1,6 +1,7 @@
 async function Check_authenticated_user() {
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/auth/auth_user/', {
     credentials: 'include',
+    mode: 'cors',
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -36,7 +37,8 @@ async function Check_authenticated_user() {
 
 async function logout() {
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/auth/logout/', {
-    method: 'POST',
+  mode: 'cors',  
+  method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'token ' + window.localStorage.getItem('token'),
@@ -61,7 +63,7 @@ async function products() {
 }
 
 async function categorys(){
-  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/category/')
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/category/',{mode: 'cors'})
   let data = await response.json();
   var select_element = document.getElementById('agileinfo-nav_search')
   var select_category_str = '<option value="" selected >All Categories</option>'
@@ -77,7 +79,8 @@ async function categorys(){
 async function add_to_cart(product_id) {
   var model_elem = document.getElementById(product_id+'_cart');
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/', {
-    method: 'POST',
+  mode: 'cors',  
+  method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'token ' + window.localStorage.getItem('token'),
@@ -97,7 +100,7 @@ async function add_to_cart(product_id) {
 
 async function categoryfilter() {
   var category = document.getElementById('agileinfo-nav_search').value;
-  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/category_filter/?category='+ category);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/category_filter/?category='+ category,{mode: 'cors',});
   let data = await response.json();
   var product_element = document.getElementById('id-product-sec1');
   var product_str = ''
@@ -112,7 +115,7 @@ async function categoryfilter() {
 
 async function search_product() {
   var search_product = document.getElementById('search_product_name').value;
-  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/search/?search='+ search_product);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/search/?search='+ search_product,{mode: 'cors',});
   let data = await response.json();
   var product_element = document.getElementById('id-product-sec1');
   var product_str = ''
@@ -126,7 +129,7 @@ async function search_product() {
 }
 
 async function quick_view(product_id) {
-  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id,{mode: 'cors',});
   let data = await response.json();
   var single_product_page = document.getElementById('single_product');
   var single_product_str = '';
@@ -137,13 +140,14 @@ async function quick_view(product_id) {
 }
 
 async function single_product(product_id) {
-  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id);
+  let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/store/single_product/?product_id='+product_id,{mode: 'cors',});
   let data = await response.json();
   return data;
 }
 
 async function cart_items() {
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
+    mode: 'cors',  
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -177,6 +181,7 @@ async function cart_items() {
 
 async function subtract_item(product_id){
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
+    mode: 'cors',
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -213,7 +218,8 @@ async function subtract_item(product_id){
 
 async function add_item(product_id){
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
-    method: 'POST',
+  mode: 'cors',  
+  method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'token ' + window.localStorage.getItem('token'),
@@ -248,6 +254,7 @@ async function add_item(product_id){
 }
 async function delete_item(product_id){
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/usercart/',{
+    mode: 'cors',
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -284,6 +291,7 @@ async function delete_item(product_id){
 
 async function orders() {
   let response = await fetch('https://pratikmahobiyaecomapp.herokuapp.com/api/cart/order/',{
+    mode: 'cors',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
