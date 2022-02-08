@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Rest Framework
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 
     # Cusstom App's
     'users',
@@ -70,6 +71,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Allow Access to All Domain
+CORS_ORIGIN_ALLOW_ALL = True
+
+# Allow Access to fixed domain Whitelisted
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = (
+#   'https://www.etsexperts.com','http://localhost:4000','https://etsexperts.com'
+# )
 
 ROOT_URLCONF = 'ecom_app.urls'
 
