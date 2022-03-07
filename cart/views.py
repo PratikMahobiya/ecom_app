@@ -15,6 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sites.shortcuts import get_current_site
 from ecom_app import settings
 
+razorpay_client = razorpay.Client(auth=(settings.razorpay_id, settings.razorpay_account_id))
 # Create your views here.
 class UserCartView(APIView):
 	authentication_classes = [TokenAuthentication,]
@@ -118,7 +119,6 @@ class OrderView(APIView):
 								'product_list':res_product,
 								'order_date': Ord_Serializer.data['order_date']
 							}
-		razorpay_client = razorpay.Client(auth=(settings.razorpay_id, settings.razorpay_account_id))
 		order_currency = 'INR'
 		callback_url = 'http://'+ str(get_current_site(request))+"/handlerequest/"
 		notes = {'order-type': "basic order from the website", 'key':'value'}
@@ -133,39 +133,39 @@ class OrderView(APIView):
 
 @csrf_exempt
 def handlerequest(request):
-    if request.method == "POST":
-        try:
-            payment_id = request.POST.get('razorpay_payment_id', '')
-            order_id = request.POST.get('razorpay_order_id','')
-            signature = request.POST.get('razorpay_signature','')
-            params_dict = { 
-            'razorpay_order_id': order_id, 
-            'razorpay_payment_id': payment_id,
-            'razorpay_signature': signature
-            }
-            try:
-                order_db = models.Order.objects.get(razorpay_order_id=order_id)
-            except:
-                return JsonResponse({'status':505})
-            order_db.razorpay_payment_id = payment_id
-            order_db.razorpay_signature = signature
-            order_db.save()
-            result = razorpay_client.utility.verify_payment_signature(params_dict)
-						if result==None:
-							amount = order_db.total_amount * 100   #we have to pass in paisa
-							try:
-								razorpay_client.payment.capture(payment_id, amount)
-								order_db.payment_status = 1
-								order_ = order_db.save()
-								order_serializer = serializers.OrderSerializer(order_)
-								return JsonResponse({'status':200, 'data': order_serializer.data,'message':'Order is Placed.'})
-							except:
-								order_db.payment_status = 2
-								order_db.save()
-								return JsonResponse({'status':505, 'data': order_serializer.data,'message':'Order is Placed.'})
-						else:
-							order_db.payment_status = 2
-							order_db.save()
-							return JsonResponse({'status':505, 'data': order_serializer.data,'message':'Order is Placed.'})
+	if request.method == "POST":
+		try:
+				payment_id = request.POST.get('razorpay_payment_id', '')
+				order_id = request.POST.get('razorpay_order_id','')
+				signature = request.POST.get('razorpay_signature','')
+				params_dict = { 
+				'razorpay_order_id': order_id, 
+				'razorpay_payment_id': payment_id,
+				'razorpay_signature': signature
+				}
+				try:
+						order_db = models.Order.objects.get(razorpay_order_id=order_id)
 				except:
-            return JsonResponse({'status':505})
+						return JsonResponse({'status':505})
+				order_db.razorpay_payment_id = payment_id
+				order_db.razorpay_signature = signature
+				order_db.save()
+				result = razorpay_client.utility.verify_payment_signature(params_dict)
+				if result==None:
+					amount = order_db.total_amount * 100   #we have to pass in paisa
+					try:
+						razorpay_client.payment.capture(payment_id, amount)
+						order_db.payment_status = 1
+						order_ = order_db.save()
+						order_serializer = serializers.OrderSerializer(order_)
+						return JsonResponse({'status':200, 'data': order_serializer.data,'message':'Order is Placed.'})
+					except:
+						order_db.payment_status = 2
+						order_db.save()
+						return JsonResponse({'status':505, 'data': order_serializer.data,'message':'Order is Placed.'})
+				else:
+					order_db.payment_status = 2
+					order_db.save()
+					return JsonResponse({'status':505, 'data': order_serializer.data,'message':'Order is Placed.'})
+		except:
+				return JsonResponse({'status':505})
