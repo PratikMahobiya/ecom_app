@@ -92,7 +92,7 @@ class OrderView(APIView):
 								'address':request.POST.get('address',''),'amount':request.POST.get('amount',''),
 								'no_of_items':request.POST.get('no_of_items','')
 							}
-		Ord_Serializer = serializers.OrderSerializer(data=ord_data)
+		Ord_Serializer = serializers.OrderSerializer(data=ord_data, partial=True)
 		if not Ord_Serializer.is_valid():
 			return JsonResponse({'status':403, 'errors': Ord_Serializer.errors})
 		Ord_Serializer.save()
