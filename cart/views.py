@@ -14,6 +14,7 @@ from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.sites.shortcuts import get_current_site
 from ecom_app import settings
+from django.shortcuts import redirect
 
 razorpay_client = razorpay.Client(auth=(settings.razorpay_id, settings.razorpay_account_id))
 # Create your views here.
@@ -120,16 +121,15 @@ class OrderView(APIView):
 								'order_date': Ord_Serializer.data['order_date']
 							}
 		order_currency = 'INR'
-		callback_url = 'http://'+ str(get_current_site(request))+"/handlerequest/"
+		callback_url = 'https://'+ str(get_current_site(request))+"/handlerequest/"
 		notes = {'order-type': "basic order from the website", 'key':'value'}
-		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, receipt=Ord_Serializer.data['bill_no'], payment_capture='0'))
-		print(razorpay_order['id'])
+		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, receipt=str(Ord_Serializer.data['bill_no']), payment_capture='0'))
 		order = models.Order.objects.get(bill_no = Ord_Serializer.data['bill_no'])
 		order.razorpay_order_id = razorpay_order['id']
 		order.save()
 
 		models.UserCart.objects.filter(user_id = user_id).delete()
-		return JsonResponse({'status':200, 'data': res_data,'message':'Order is Placed.','order':order, 'order_id': razorpay_order['id'], 'orderId':order.order_id, 'final_price':request.POST.get('amount',0), 'razorpay_merchant_id':settings.razorpay_id, 'callback_url':callback_url})
+		return JsonResponse({'status':200, 'data': res_data,'message':'Order is Placed.','order':str(order), 'order_id': razorpay_order['id'], 'orderId':order.bill_no, 'final_price':request.POST.get('amount',0), 'razorpay_merchant_id':settings.razorpay_id, 'callback_url':callback_url})
 
 @csrf_exempt
 def handlerequest(request):
@@ -158,7 +158,7 @@ def handlerequest(request):
 						order_db.payment_status = 1
 						order_ = order_db.save()
 						order_serializer = serializers.OrderSerializer(order_)
-						return JsonResponse({'status':200, 'data': order_serializer.data,'message':'Order is Placed.'})
+						return redirect('https://example.com/'))
 					except:
 						order_db.payment_status = 2
 						order_db.save()

@@ -303,3 +303,51 @@ async function orders() {
   }
   cart_items.innerHTML = cart_item_str;
 }
+
+async function razorpay(data){
+  let div_data = document.getElementById('checkout_razor');
+  div_data.innerHTML = "";
+  div_data.innerHTML = `<h1 style="text-align:center;">Payment Summary</h1>
+  Total Amount - `+ data.final_price +`
+  <br>
+  <button id="rzp-button1" class="btn btn-lg btn-primary btn-block" type="button">Pay Now</button>`;
+  createpayment(data);
+}
+
+async function createpayment(data){
+  var options = {
+      "key": data.razorpay_merchant_id, // Enter the Key ID generated from the Dashboard
+      "amount": data.final_price * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "Bhagito",
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "order_id": data.order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "callback_url": "{{callback_url}}",
+      "prefill": {
+          "name": data.data.first_name + data.data.last_name,
+          "email": data.data.email,
+          "contact": data.data['mobile']
+      },
+      "notes": {
+          "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.on('payment.failed', function (response){
+          alert(response.error.code);
+          alert(response.error.description);
+          alert(response.error.source);
+          alert(response.error.step);
+          alert(response.error.reason);
+          alert(response.error.metadata.order_id);
+          alert(response.error.metadata.payment_id);
+  });
+  document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+  }
+}

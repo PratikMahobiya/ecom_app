@@ -3,7 +3,7 @@
 <html lang="zxx">
 {% load static %}
 <head>
-	<title>BHAGITO | CHECKOUT</title>
+	<title>BHAGITO | Payment</title>
 	<!--/tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -205,24 +205,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</button>
 						</div>
 						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav menu__list">
-								<li class="">
-									<a class="nav-stylehead" href="/">Home
-										<span class="sr-only">(current)</span>
-									</a>
-								</li>
-								<li class="">
-									<a class="nav-stylehead" href="{% url 'Orders' %}">My Orders</a>
-								</li>
-								<li class="active">
-									<a class="nav-stylehead" href="{% url 'CheckOut' %}">My Cart</a>
-								</li>
-								<li class="">
-									<a class="nav-stylehead" href="#">About Us</a>
-								</li>
-							</ul>
-						</div>
 					</div>
 				</nav>
 			</div>
@@ -230,103 +212,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!-- //navigation -->
 	<!-- page -->
-	<div id="checkout_razor">
 	<div class="services-breadcrumb">
 		<div class="agile_inner_breadcrumb">
 			<div class="container">
 				<ul class="w3_short">
-					<li>
-						<a href="/">Home</a>
-						<i>|</i>
-					</li>
-					<li>Checkout</li>
+					<li>Payment</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- //page -->
-	<!-- checkout page -->
-	<div class="privacy">
+	<!-- Single Page -->
+	<div class="banner-bootom-w3-agileits">
 		<div class="container">
-			<!-- tittle heading -->
-			<h3 class="tittle-w3l">Checkout
-				<span class="heading-style">
-					<i></i>
-					<i></i>
-					<i></i>
-				</span>
-			</h3>
-			<!-- //tittle heading -->
-			<div class="checkout-right">
-				<h4>TOTAL AMOUNT:
-					<span id='total_amount'></span>
-				</h4>
-				<div class="table-responsive">
-					<table class="timetable_sub">
-						<thead>
-							<tr>
-								<th>SL No.</th>
-								<th>Product</th>
-								<th>Quality</th>
-								<th>Product Name</th>
-
-								<th>Price</th>
-								<th>Remove</th>
-							</tr>
-						</thead>
-						<tbody id="cart_item">
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="checkout-left">
-				<div class="address_form_agile">
-					<h4>Please Enter the Invoice Details.</h4>
-					<form action="#" method="post" class="creditly-card-form agileinfo_form" id="checkout_form">
-						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
-							<div class="information-wrapper">
-								<div class="first-row">
-									<div class="controls">
-										<input class="billing-address-name" type="text" name="first_name" placeholder="First Name" required="">
-										<input class="billing-address-name" type="text" name="last_name" placeholder="Last Name" required="">
-									</div>
-									<div class="w3_agileits_card_number_grids">
-										<div class="w3_agileits_card_number_grid_left">
-											<div class="controls">
-												<input type="text" placeholder="Mobile Number" name="mobile" required="">
-											</div>
-										</div>
-										<div class="w3_agileits_card_number_grid_right">
-											<div class="controls">
-												<input type="text" placeholder="Address" name="address" required="">
-											</div>
-										</div>
-										<div class="w3_agileits_card_number_grid_right">
-											<div class="controls">
-												<input type="hidden" placeholder="Amount" name="amount" id="amount_inp">
-												<input type="hidden" placeholder="No Of Items" name="no_of_items" id="no_of_item" value="0">
-												<input type="hidden" placeholder="Product List" name="product_list" id="product_list">
-											</div>
-										</div>
-										<div class="clear"> </div>
-									</div>
-								</div>
-								<button class="submit check_out" id="place_order_id">Delivery to this Address</button>
-							</div>
-						</div>
-					</form>
-					<div class="checkout-right-basket">
-						<a href="#">Make a Payment
-							<span class="fa fa-hand-o-right" aria-hidden="true"></span>
-						</a>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+			<h1 style="text-align:center;">Payment Summary</h1>
+			Total Amount - {{order.total_amount}}
+			<br>
+			<button id="rzp-button1" class="btn btn-lg btn-primary btn-block" type="button">Pay Now</button>
+			<div class="clearfix"> </div>
 		</div>
 	</div>
-	</div>
-	<!-- //checkout page -->
+	<!-- //Single Page -->
 	<!-- copyright -->
 	<div class="copy-right">
 		<div class="container">
@@ -344,54 +250,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<!-- popup modal (for signin & signup)-->
 	<script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
-	<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
-
-		});
-	</script>
-	<!-- Large modal -->
-	<script>
-		checkout_form.onsubmit = async (e) => {
-			e.preventDefault();
-			var cart_item = document.getElementById('no_of_item').value;
-			if (cart_item == "0"){
-				alert("Add Item To Your Cart.");
-			}
-			else{
-				let response = await fetch('http://127.0.0.1:8000/api/cart/order/', {
-					method: 'POST',
-					headers: {
-						'Authorization': 'token ' + window.localStorage.getItem('token'),
-					},
-					body: new FormData(checkout_form),
-				});
-		
-				let data = await response.json();
-				if (data.status == 200){
-					razorpay(data);
-
-				}
-				else{
-					var model_elem = document.getElementById("place_order_id")
-					model_elem.value = 'Something Went Wrong'
-					setTimeout(function () {
-											model_elem.value = 'Delivery to this Address';
-											}.bind(this), 2000);
-				}		
-			}
-		};
-	</script>
 	<!-- //popup modal (for signin & signup)-->
 
 	<!-- password-script -->
@@ -400,8 +258,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			document.getElementById("password1").onchange = validatePassword;
 			document.getElementById("password2").onchange = validatePassword;
 			Check_authenticated_user();
-			cart_items();
-		}
+			quick_view(window.location.search.split('=')[1]);
+			}
 
 		function validatePassword() {
 			var pass2 = document.getElementById("password2").value;
@@ -415,6 +273,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //password-script -->
 
+	<!-- RazorPay Integration -->
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script>
+		var options = {
+			"key": "{{razorpay_merchant_id}}", // Enter the Key ID generated from the Dashboard
+			"amount": "{% widthratio final_price 1 100 %}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+			"currency": "INR",
+			"name": "WonderShop",
+			"description": "Test Transaction",
+			"order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+			"callback_url": "{{callback_url}}",
+			"handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+			},
+			"prefill": {
+				"name": "{{}}",
+				"email": "{{request.user.email}}",
+				"contact": "+91" + "{{request.user.phone}}"
+			},
+			"notes": {
+        "address": "Razorpay Corporate Office"
+			},
+			"theme": {
+				"color": "#2BA977"
+			}
+		};
+		var rzp1 = new Razorpay(options);
+		document.getElementById('rzp-button1').onclick = function (e) {
+			rzp1.open();
+			e.preventDefault();
+		}
+	</script>
+	<!-- //RazorPay Integration -->
+	
 	<!-- smoothscroll -->
 	<script src="{% static 'js/SmoothScroll.min.js' %}"></script>
 	<!-- //smoothscroll -->
@@ -456,7 +350,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- for bootstrap working -->
 	<script src="{% static 'js/bootstrap.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
-	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 
