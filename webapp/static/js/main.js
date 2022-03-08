@@ -314,7 +314,7 @@ async function orders() {
 
 async function razorpay(data){
   let div_data = document.getElementById('checkout_razor');
-  div_data.innerHTML = "";
+  div_data.innerHTML = " ";
   div_data.innerHTML = `<h1 style="text-align:center;">Payment Summary</h1>
   Total Amount - `+ data.final_price +`
   <br>
@@ -331,7 +331,7 @@ async function createpayment(data){
       "description": "Transaction",
       "image": "https://example.com/your_logo",
       "order_id": data.order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      "callback_url": "{{callback_url}}",
+      "callback_url": data.callback_url,
       "prefill": {
           "name": data.data.first_name + data.data.last_name,
           "email": data.data['email'],
