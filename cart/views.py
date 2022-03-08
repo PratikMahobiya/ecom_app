@@ -130,7 +130,7 @@ class OrderView(APIView):
 		order.save()
 
 		models.UserCart.objects.filter(user_id = user_id).delete()
-		return JsonResponse({'status':200, 'data': res_data,'message':'Order is Placed.','order':str(order), 'order_id': razorpay_order['id'], 'orderId':str(order.order_id), 'final_price':request.POST.get('amount',0), 'razorpay_merchant_id':settings.razorpay_id, 'callback_url':callback_url})
+		return JsonResponse({'status':200, 'data': res_data,'message':'Order is Placed.','order':str(order), 'order_id': razorpay_order['id'], 'orderId':str(order.bill_no), 'final_price':request.POST.get('amount',0), 'razorpay_merchant_id':settings.razorpay_id, 'callback_url':callback_url})
 
 @csrf_exempt
 def handlerequest(request):
