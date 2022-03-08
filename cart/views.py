@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import redirect
 from ecom_app import settings
 
 razorpay_client = razorpay.Client(auth=(settings.razorpay_id, settings.razorpay_account_id))
@@ -113,6 +113,7 @@ class OrderView(APIView):
 								'first_name':request.POST.get('first_name',''),
 								'last_name':request.POST.get('last_name',''),
 								'mobile':request.POST.get('mobile',''),
+								'email':user_id.email,
 								'address':request.POST.get('address',''),
 								'amount':request.POST.get('amount',''),
 								'no_of_items':request.POST.get('no_of_items',''),
@@ -158,14 +159,14 @@ def handlerequest(request):
 						order_db.payment_status = 1
 						order_ = order_db.save()
 						order_serializer = serializers.OrderSerializer(order_)
-						return JsonResponse({'status':200, 'data': order_serializer.data,'message':'Order is Placed.'})
+						return redirect("http://pratikmahobiyaecomapp.herokuapp.com/order/")
 					except:
 						order_db.payment_status = 2
 						order_db.save()
-						return JsonResponse({'status':505, 'data': order_serializer.data,'message':'Order is Placed.'})
+						return redirect("http://pratikmahobiyaecomapp.herokuapp.com/order/")
 				else:
 					order_db.payment_status = 2
 					order_db.save()
-					return JsonResponse({'status':505, 'data': order_serializer.data,'message':'Order is Placed.'})
+					return redirect("http://pratikmahobiyaecomapp.herokuapp.com/order/")
 		except:
-				return JsonResponse({'status':505})
+				return redirect("http://pratikmahobiyaecomapp.herokuapp.com/order/")

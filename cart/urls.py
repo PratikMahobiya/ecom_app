@@ -9,6 +9,7 @@ from . import views
 urlpatterns = [
     path(r'usercart/', views.UserCartView.as_view(), name = 'UserCart'),
     path(r'order/', views.OrderView.as_view(), name = 'Order'),
+    path(r'handlerequest/', views.handlerequest, name = 'HandleRequest'),
 ]
 
 if settings.DEBUG:

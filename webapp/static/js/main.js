@@ -318,7 +318,7 @@ async function razorpay(data){
   div_data.innerHTML = `<h1 style="text-align:center;">Payment Summary</h1>
   Total Amount - `+ data.final_price +`
   <br>
-  <button id="rzp-button1" class="btn btn-lg btn-primary btn-block" type="button">Pay Now</button>`;
+  <button id="rzp-button1" class="checkout-right-basket" type="button">Make a Payment<span class="fa fa-hand-o-right" aria-hidden="true"></span></button>`;
   createpayment(data);
 }
 
