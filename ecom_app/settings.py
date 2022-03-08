@@ -147,3 +147,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Base url to serve media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+razorpay_id = 'rzp_test_cTDvV77RJh2KFL'
+razorpay_account_id = 'Ylc59jVv5On22TSzHLek98f8'
