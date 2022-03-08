@@ -1,3 +1,4 @@
+import razorpay
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework import filters, generics, pagination
@@ -10,6 +11,11 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.decorators import api_view
 
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.sites.shortcuts import get_current_site
+from ecom_app import settings
+
+razorpay_client = razorpay.Client(auth=(settings.razorpay_id, settings.razorpay_account_id))
 # Create your views here.
 class UserCartView(APIView):
 	authentication_classes = [TokenAuthentication,]
