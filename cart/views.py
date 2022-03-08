@@ -123,14 +123,14 @@ class OrderView(APIView):
 		order_currency = 'INR'
 		callback_url = 'http://' + "pratikmahobiyaecomapp.herokuapp.com/api/cart" + "/handlerequest/"
 		notes = {'order-type': "basic order from the website", 'key':'value'}
-		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, receipt=Ord_Serializer.data['bill_no'], payment_capture='0'))
+		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, receipt=str(Ord_Serializer.data['bill_no']), payment_capture='0'))
 		print(razorpay_order['id'])
 		order = models.Order.objects.get(bill_no = Ord_Serializer.data['bill_no'])
 		order.razorpay_order_id = razorpay_order['id']
 		order.save()
 
 		models.UserCart.objects.filter(user_id = user_id).delete()
-		return JsonResponse({'status':200, 'data': res_data,'message':'Order is Placed.','order':order, 'order_id': razorpay_order['id'], 'orderId':order.order_id, 'final_price':request.POST.get('amount',0), 'razorpay_merchant_id':settings.razorpay_id, 'callback_url':callback_url})
+		return JsonResponse({'status':200, 'data': res_data,'message':'Order is Placed.','order':str(order), 'order_id': razorpay_order['id'], 'orderId':str(order.order_id), 'final_price':request.POST.get('amount',0), 'razorpay_merchant_id':settings.razorpay_id, 'callback_url':callback_url})
 
 @csrf_exempt
 def handlerequest(request):
