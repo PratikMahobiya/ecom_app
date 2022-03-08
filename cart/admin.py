@@ -9,8 +9,8 @@ class UserCartAdmin(admin.ModelAdmin):
 
 @admin.register(models.Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('bill_no','user_id','first_name','last_name','mobile','address','amount','no_of_items','order_date')
-    readonly_fields = ('bill_no','user_id','first_name','last_name','mobile','address','amount','no_of_items','order_date')
+    list_display = ('bill_no','status','payment_status','user_id','first_name','last_name','mobile','address','amount','no_of_items','order_date','razorpay_order_id','razorpay_payment_id','razorpay_signature')
+    readonly_fields = ('bill_no','status','payment_status','user_id','first_name','last_name','mobile','address','amount','no_of_items','order_date','razorpay_order_id','razorpay_payment_id','razorpay_signature')
     list_per_page = 10
     search_fields = ['bill_no','user_id']
 
