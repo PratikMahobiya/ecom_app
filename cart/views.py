@@ -159,14 +159,14 @@ def handlerequest(request):
 						order_db.payment_status = 1
 						order_ = order_db.save()
 						order_serializer = serializers.OrderSerializer(order_)
-						return redirect(request,"http://pratikmahobiyaecomapp.herokuapp.com/order/")
+						return redirect("https://pratikmahobiyaecomapp.herokuapp.com/order/")
 					except:
 						order_db.payment_status = 2
 						order_db.save()
-						return redirect("http://pratikmahobiyaecomapp.herokuapp.com/order/")
+						return redirect("https://pratikmahobiyaecomapp.herokuapp.com/order/")
 				else:
 					order_db.payment_status = 2
 					order_db.save()
-					return redirect("http://pratikmahobiyaecomapp.herokuapp.com/order/")
+					return redirect("https://pratikmahobiyaecomapp.herokuapp.com/order/")
 		except:
-				return redirect("http://pratikmahobiyaecomapp.herokuapp.com/order/")
+				return redirect("https://pratikmahobiyaecomapp.herokuapp.com/order/")
