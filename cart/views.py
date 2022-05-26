@@ -152,7 +152,7 @@ def handlerequest(request):
 				order_db.razorpay_signature = signature
 				order_db.save()
 				result = razorpay_client.utility.verify_payment_signature(params_dict)
-				if result==None:
+				if result is True:
 					amount = order_db.total_amount * 100   #we have to pass in paisa
 					try:
 						razorpay_client.payment.capture(payment_id, amount)
