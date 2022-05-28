@@ -123,8 +123,7 @@ class OrderView(APIView):
 		order_currency = 'INR'
 		callback_url = 'https://' + "pratikmahobiyaecomapp.herokuapp.com/api/cart" + "/handlerequest/"
 		notes = {'order-type': "basic order from the website", 'key':'value', "my_data": "Pratik", "receipt":str(Ord_Serializer.data['bill_no'])}
-		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, payment_capture='0'))
-		print("RZRRRR PY : -",razorpay_order)
+		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, receipt=str(Ord_Serializer.data['bill_no']), payment_capture='0'))
 		order = models.Order.objects.get(bill_no = Ord_Serializer.data['bill_no'])
 		order.razorpay_order_id = razorpay_order['id']
 		order.save()
