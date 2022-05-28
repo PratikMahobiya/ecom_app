@@ -124,7 +124,7 @@ class OrderView(APIView):
 		callback_url = 'https://' + "pratikmahobiyaecomapp.herokuapp.com/api/cart" + "/handlerequest/"
 		notes = {'order-type': "basic order from the website", 'key':'value', "my_data": "Pratik", "receipt":str(Ord_Serializer.data['bill_no'])}
 		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, payment_capture='0'))
-		print(razorpay_order['id'])
+		print("RZRRRR PY : -",razorpay_order)
 		order = models.Order.objects.get(bill_no = Ord_Serializer.data['bill_no'])
 		order.razorpay_order_id = razorpay_order['id']
 		order.save()
@@ -152,14 +152,12 @@ def handlerequest(request):
 				order_db.razorpay_signature = signature
 				order_db.save()
 				result = razorpay_client.utility.verify_payment_signature(params_dict)
-				print("RESULTTTTTTTTTTT: - ",result)
 				if result is True:
-					amount = order_db.total_amount * 100   #we have to pass in paisa
+					amount = order_db.amount * 100   #we have to pass in paisa
 					try:
 						razorpay_client.payment.capture(payment_id, amount)
 						order_db.payment_status = 1
-						order_ = order_db.save()
-						order_serializer = serializers.OrderSerializer(order_)
+						order_db.save()
 						return redirect("https://pratikmahobiyaecomapp.herokuapp.com/order/")
 					except:
 						order_db.payment_status = 2
