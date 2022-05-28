@@ -1,5 +1,6 @@
 .DS_Store
 /.venv/
+/my-env/
 /*/settings/local.py
 */media/
 /.vagrant/
