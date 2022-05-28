@@ -123,7 +123,7 @@ class OrderView(APIView):
 		order_currency = 'INR'
 		callback_url = 'https://' + "pratikmahobiyaecomapp.herokuapp.com/api/cart" + "/handlerequest/"
 		notes = {'order-type': "basic order from the website", 'key':'value', "my_data": "Pratik", "receipt":str(Ord_Serializer.data['bill_no'])}
-		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, receipt=str(Ord_Serializer.data['bill_no']), payment_capture='0'))
+		razorpay_order = razorpay_client.order.create(dict(amount=int(request.POST.get('amount',0))*100, currency=order_currency, notes = notes, payment_capture='0'))
 		print(razorpay_order['id'])
 		order = models.Order.objects.get(bill_no = Ord_Serializer.data['bill_no'])
 		order.razorpay_order_id = razorpay_order['id']
@@ -152,6 +152,7 @@ def handlerequest(request):
 				order_db.razorpay_signature = signature
 				order_db.save()
 				result = razorpay_client.utility.verify_payment_signature(params_dict)
+				print("RESULTTTTTTTTTTT: - ",result)
 				if result is True:
 					amount = order_db.total_amount * 100   #we have to pass in paisa
 					try:
