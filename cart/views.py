@@ -158,7 +158,7 @@ def handlerequest(request):
 						order_db.payment_status = 1
 						order_ = order_db.save()
 						order_serializer = serializers.OrderSerializer(order_)
-						return redirect('https://example.com/'))
+						return redirect('https://example.com/')
 					except:
 						order_db.payment_status = 2
 						order_db.save()
